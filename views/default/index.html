@@ -1,0 +1,43 @@
+{{extend 'layout.html'}}<!--This page serves as the home page for both students and the admin , depending on the login email id-->
+{{if session.token == "neeharikak.v@students.iiit.ac.in":}}
+<h2>WELCOME</h2><br/>
+<h2>Instructions</h2>
+<ul>
+<li><h3>Click on amount to set the award amounts</h3></li>
+<li><h3>Click on students list to upload the list of students</h3></li>
+<li><h3>Click on book list to upload the list of books</h3></li>
+<li><h3>Click on allot to go the allotment procedure</h3></li>
+<li><h3>Click on output to generate the output lists</h3></li>
+<li><h3>Click on alloted_students to get the student names whose allotment is done</h3></li>
+<li><h3>Click on get_labels to generate labels of students</h3></li>
+<li><h3>Click on Done only if the allotment for a particular year is done </h3></li>
+
+    
+</ul>
+{{pass}}
+
+<!--{{if session.token != "neeharikak.v@students.iiit.ac.in":}}
+<a href="{{=URL(r = request, f = 'logout')}}">Logout</a>
+ <ul>
+     <li><h2>You are logged in as {{=t}}<br /></h2></li>
+<h3><li>This portal allows you to fill your preferences. Follow instructions carefully.</li>
+<li><h2>Instructions</h2></li>
+     <li><h3>1. This portal accepts a maximum of 10 preferences.<br /></h3></li>
+<li>2.After giving 10 preferences you can enter a preference only if you unselect any of your previous preference.<br /></li>
+<li>3.You need not submit your preferences explicitly, selection will suffice.<br /></li>
+</h3>
+<hr \>
+</ul>
+{{pass}}-->
+{{if session.token!= "neeharikak.v@students.iiit.ac.in":}}
+<h2>WELCOME</h2><br/>
+<h3>You are logged in as {{=t}}<br /></h3>
+<h2>Instructions</h2>
+<ul>
+<li><h3>Click on home to come to the home page</h3></li>
+<li><h3>Click on language to fill language preferences</h3></li>
+<li><h3>Click on books to to fill book preferences</h3></li>
+
+ 
+</ul>
+{{pass}}

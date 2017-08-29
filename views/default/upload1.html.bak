@@ -1,0 +1,33 @@
+{{extend 'layout.html'}}
+{{id1=0}}
+         {{for rows in db(db.Admin).select():}}
+{{id1 =id1 +1}}
+{{pass}}
+{{id2=0}}
+         {{for rows in db(db.Book).select():}}
+{{id2 =id2 +1}}
+{{pass}}
+{{ if id1 == 0:}}
+<br/><br/><br/><br/>
+<h3>Please enter amount and year to continue</h3>
+{{pass}}
+{{ if id1 != 0 and id2 == 0:}}
+<h2>Instructions</h2>
+<h4>This page is for uploading the Books list</h4>
+<h4>The CSV file should consist of the following columns in the specified order</h4>
+<ul>
+<li>Name</li>
+<li>Language</li>
+<li>Cost</li>
+<li>Copies</li>
+<li>Type</li>
+</ul>
+{{=FORM(INPUT(_type='file',_name='csvfile'),INPUT(_type='hidden',_value='Book',_name='table'),INPUT(_type='submit',_value='Upload'))}}
+{{pass}}
+{{ if id1 != 0 and id2 != 0:}}
+<h3> You have already uploaded a list of books </h3>
+<h3> Click the re-enter button to discard the existing data and upload new list of books</h3>
+<p align="left">&nbsp;&nbsp;&nbsp;<a href="{{=URL('dropbook', args=[])}}"><button>Re-enter</button></a></p>
+<h3>Click the append button to append the list to existing list of books</h3>
+<p align="left">&nbsp;&nbsp;&nbsp;<a href="{{=URL('errorbook', args=[])}}"><button>Append</button></a></p>
+{{pass}}

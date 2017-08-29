@@ -1,0 +1,277 @@
+{{extend 'layout.html'}}<!--This page displayed for every student ,showing their total amount,updated amount,language preferences,available books with cost,copies , and books selected for that particular student by the admin -->
+
+<script>
+function myFunction(name)
+{
+window.location = name
+}
+</script>
+
+<p align="left">&nbsp;&nbsp;&nbsp;<a href="{{=URL('choose')}}"><button>Back</button></a></p>
+<center>
+<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{=User.Name}}</h1><br  />
+<br />
+</center>
+<table border="0">
+<tr>
+<td>
+<h3>&nbsp;&nbsp;&nbsp;Total amount: </h3>
+</td>
+<td>
+<h3>&nbsp;&nbsp;&nbsp; {{=User.Total}}</h3></td>
+</tr>
+<tr>
+<td>
+<h3>&nbsp;&nbsp;&nbsp;Total amount of books selected:</h3> 
+</td>
+<td>
+<h3>&nbsp;&nbsp;&nbsp; {{=User.Uptotal}}</h3>
+</td>
+</tr>
+</table>
+<h2>&nbsp;&nbsp;&nbsp;Language Preferences </h2><br/>
+{{for i in langu:}}
+{{if User.Email == i.E:}}
+{{for j in lang:}}
+{{if j.id == i.First:}}
+<h3>&nbsp;&nbsp;&nbsp; First:&nbsp;&nbsp {{=j.Name}}</h3><br />
+{{pass}}
+{{pass}}
+{{for j in lang:}}
+{{if j.id == i.Second:}}
+<h3>&nbsp;&nbsp;&nbsp;Second:&nbsp;&nbsp {{=j.Name}}</h3><br />
+{{pass}}
+{{pass}}
+{{pass}}
+{{pass}}
+<table border="1" >
+<tr>
+<td>
+<h2>Core Book Preferences&nbsp;&nbsp&nbsp;&nbsp&nbsp;</h2><br />
+    </td>
+    
+    <td>
+<h2>Other Book Preferences</h2><br />    
+    </td>
+    
+</tr>
+<h3>
+<tr>    
+<td>
+{{for U in Prebooks:}}
+    {{ for j in form:}}
+    {{ if j.email == User.Email and j.id == int(U.usd) : }}
+    {{if U.Type == 0:}}
+
+
+<h3>
+ {{=U.Name}} </h3>
+
+
+
+{{pass}}
+{{pass}}
+    {{pass}}
+    {{pass}}
+</td>    
+</h3>
+
+<h3>
+<td>
+{{for U in Prebooks:}}
+    {{ for j in form:}}
+    {{ if j.email == User.Email and j.id == int(U.usd) : }}
+    {{if U.Type == 1 :}}
+
+<h3>
+ {{=U.Name}} 
+    &nbsp;&nbsp;&nbsp; </h3>
+
+{{pass}}
+{{pass}}
+{{pass}}
+{{pass}}
+</td>
+
+</tr>
+</h3>
+<!--</table>
+
+<table border="1"> -->
+<tr>
+<td>
+<h2>Core Books Alloted</h2><br />
+    </td>
+    
+    <td>
+<h2>Other Books Alloted</h2><br />    
+    </td>
+    
+    <tr>
+    <td>
+<table >
+<h3>
+{{for U in UPBooks:}}
+    {{if U.Type == 0:}}
+<tr>
+<td>
+<h3>
+&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="myFunction('{{=URL('delete', args=[User.id,User.Uptotal,U.id,U.Copies,U.Bid,User.RollNo,U.Cost,U.Type])}}')" > {{=U.Name}} </input>
+    &nbsp;&nbsp;&nbsp; </h3>
+</td>
+<td>
+
+    &nbsp;&nbsp;&nbsp;{{=U.Cost}}
+</td>
+<td>
+&nbsp;&nbsp;&nbsp;{{=U.Copies}}
+
+</td>
+</tr>
+{{pass}}
+{{pass}}</table>
+</h3>
+</td>
+<td>
+<table border="0">
+<h3>
+{{for U in UPBooks:}}
+    {{if U.Type == 1 :}}
+<tr>
+<td>
+<h3>
+&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="myFunction('{{=URL('delete', args=[User.id,User.Uptotal,U.id,U.Copies,U.Bid,User.RollNo,U.Cost,U.Type])}}')" > {{=U.Name}} </input>
+    &nbsp;&nbsp;&nbsp; </h3>
+</td>
+<td>
+
+    &nbsp;&nbsp;&nbsp;{{=U.Cost}}
+</td>
+<td>
+&nbsp;&nbsp;&nbsp;{{=U.Copies}}
+
+</td>
+</tr>
+{{pass}}
+{{pass}}</table>
+</h3>
+</td>
+</tr>
+</table>
+{{if len(Books):}}
+&nbsp;&nbsp;&nbsp;<h2>&nbsp;&nbsp;&nbsp;Core Books Available for Selection</h2><br /><p>
+<h3>
+{{flag ='g'}}
+<table border="0">
+<tr>
+<th>
+<h3>&nbsp;&nbsp;&nbsp;Book Name</h3>
+</th>
+<td>
+<h3>Cost</h3>
+</td>
+<td>
+<h3>Copies</h3>
+</td>
+<td>
+<h3>&nbsp;&nbsp;&nbsp;Language</h3>
+</td>
+</tr>
+{{for Book in Books:}}
+    {{ if Book.Type == 0:}}
+{{if Book.Copies != 0:}}
+{{for U in UPBooks:}}
+{{if int(U.Bid) == Book.id :}}
+{{flag ='r'}}
+{{pass}}
+{{pass}}
+{{if flag == 'g':}}
+<tr>
+<td>
+
+&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="myFunction('{{=URL('update', args=[User.Name,User.RollNo,Book.Name,Book.Language,User.id,Book.Cost,User.Uptotal,Book.id,Book.Copies,Book.Type])}}')" > {{=Book.Name}} </input>
+&nbsp;&nbsp;&nbsp;
+</td>
+<td>
+{{=Book.Cost}}
+&nbsp;&nbsp;&nbsp;
+</td>
+<td>
+{{=Book.Copies}}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td>
+    &nbsp;&nbsp;&nbsp;
+    {{=Book.Language}}   
+&nbsp;&nbsp;&nbsp;
+</td>
+</tr>
+{{pass}}
+{{flag = 'g'}}
+{{pass}}
+{{pass}}</p>
+{{pass}}
+{{pass}}
+</table>
+
+
+
+{{if len(Books):}}
+&nbsp;&nbsp;&nbsp;<h2>&nbsp;&nbsp;&nbsp;Other Books Available for Selection</h2><br /><p>
+<h3>
+{{flag ='g'}}
+<table border="0">
+<tr>
+<th>
+<h3>&nbsp;&nbsp;&nbsp;Book Name</h3>
+</th>
+<td>
+<h3>Cost</h3>
+</td>
+<td>
+<h3>Copies</h3>
+</td>
+<td>
+<h3>&nbsp;&nbsp;&nbsp;Language</h3>
+</td>
+</tr>
+{{for Book in Books:}}
+    {{if Book.Type == 1:}}
+{{if Book.Copies != 0:}}
+{{for U in UPBooks:}}
+{{if int(U.Bid) == Book.id :}}
+{{flag ='r'}}
+{{pass}}
+{{pass}}
+{{if flag == 'g':}}
+<tr>
+<td>
+
+&nbsp;&nbsp;&nbsp; <input type="checkbox" onclick="myFunction('{{=URL('update', args=[User.Name,User.RollNo,Book.Name,Book.Language,User.id,Book.Cost,User.Uptotal,Book.id,Book.Copies,Book.Type])}}')" > {{=Book.Name}} </input>
+&nbsp;&nbsp;&nbsp;
+</td>
+<td>
+{{=Book.Cost}}
+&nbsp;&nbsp;&nbsp;
+</td>
+<td>
+{{=Book.Copies}}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td>
+    &nbsp;&nbsp;&nbsp;
+    {{=Book.Language}}   
+&nbsp;&nbsp;&nbsp;
+</td>
+</tr>
+{{pass}}
+{{flag = 'g'}}
+{{pass}}
+{{pass}}</p>
+{{pass}}
+{{pass}}
+</table>
+</h3>
+
+
+<p align="left">&nbsp;&nbsp;&nbsp;<a href="{{=URL('submit', args=[User.id])}}"><button>Submit</button></a></p>

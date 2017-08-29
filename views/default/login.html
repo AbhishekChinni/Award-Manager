@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}<!-- this is the login page -->
+{{id1=0}}
+
+
+{{for rows in db(db.User.Email == session.token).select():}}
+{{id1 =id1 +1}}
+{{pass}}
+{{if  id1 == 0  and  session.token != "neeharikak.v@students.iiit.ac.in":}}
+{{redirect(URL(r=request,f='logout'))}}
+{{pass}}
+{{if id1 == 1:}}
+
+
+{{redirect(URL(r=request,f='index'))}}
+{{pass}}
+{{if  session.token == "neeharikak.v@students.iiit.ac.in":}}
+
+
+{{redirect(URL(r=request,f='index'))}}
+{{pass}}

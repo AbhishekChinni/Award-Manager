@@ -1,0 +1,130 @@
+{{extend 'layout.html'}}<!--This page is displayed if the student selects a particular book as his preference,by which the update1 function is called and the entry(selection) is inserted into the prebook table-->
+<script>
+function myFunction(name)
+{
+window.location = name
+}
+</script>
+<p>&nbsp;&nbsp;&nbsp;<a href="{{=URL('index')}}"><button>Back</button></a>
+<center>
+{{name=session.token.split('@')[0]}}
+{{first_name=name.split('.')[0]}}
+{{last_name=name.split('.')[1]}}
+<h1> {{first_name}}</h1>
+</center>
+{{for rows in db(db.auth_user.email == session.token).select(db.auth_user.id):}}
+{{id1=rows.id}}
+{{pass}}
+
+<h2>&nbsp;&nbsp;&nbsp;Core Books Selected</h2><br />
+<table border="0">
+{{for U in prebooks :}}
+    {{if U.Type == 0:}}
+<tr>
+<td>
+    &nbsp;&nbsp;&nbsp;<b> <input type="checkbox" onclick="myFunction('{{=URL('delete1', args=[id1,U.id])}}')">{{=U.Name}}</input></b>
+
+
+
+</tr>
+{{pass}}
+{{pass}}
+</table>
+
+{{ if len(prebooks) < 10:}}
+{{if len(Books):}}
+
+<h2>&nbsp;&nbsp;&nbsp;Core Books Available for Selection</h2><br /><p>
+{{flag ='g'}}
+<table border="0">
+<tr>
+<th>
+<h3>&nbsp;&nbsp;&nbsp;Book Name</h3>
+</th>
+</tr>
+{{for Book in Books:}}
+    {{if Book.Type == 0:}}
+{{for U in prebooks :}}
+{{if int(U.Bid) == Book.id :}}
+{{flag ='r'}}
+{{pass}}
+{{pass}}
+{{if flag == 'g':}}
+{{for rows in db(db.auth_user.email == session.token).select(db.auth_user.id,db.auth_user.first_name,db.auth_user.cnt):}}
+{{id1=rows.id}}
+{{fname=rows.first_name}}
+{{count=rows.cnt}}
+{{pass}}
+<tr>
+<h3> 
+<td>
+    &nbsp;&nbsp;&nbsp;<b><input type="checkbox" onclick="myFunction('{{=URL('update1', args=[id1,Book.Name,Book.Language,Book.id,fname,count,Book.Type])}}')">{{=Book.Name}}</input></b>
+</td>
+</h3> 
+<td>
+
+
+</td>
+</tr>
+{{pass}}
+{{flag = 'g'}}
+{{pass}}</p>
+{{pass}}
+{{pass}}
+{{pass}}</table>
+<h2>&nbsp;&nbsp;&nbsp;Other Books Selected</h2><br />
+<table border="0">
+{{for U in prebooks :}}
+    {{if U.Type == 1:}}
+<tr>
+<td>
+    &nbsp;&nbsp;&nbsp;<b> <input type="checkbox" onclick="myFunction('{{=URL('delete1', args=[id1,U.id])}}')">{{=U.Name}}</input></b>
+
+
+
+</tr>
+{{pass}}
+{{pass}}
+</table>
+
+{{ if len(prebooks) < 10:}}
+{{if len(Books):}}
+
+<h2>&nbsp;&nbsp;&nbsp;Other Books Available for Selection</h2><br /><p>
+{{flag ='g'}}
+<table border="0">
+<tr>
+<th>
+<h3>&nbsp;&nbsp;&nbsp;Book Name</h3>
+</th>
+</tr>
+{{for Book in Books:}}
+    {{if Book.Type == 1:}}
+{{for U in prebooks :}}
+{{if int(U.Bid) == Book.id :}}
+{{flag ='r'}}
+{{pass}}
+{{pass}}
+{{if flag == 'g':}}
+{{for rows in db(db.auth_user.email == session.token).select(db.auth_user.id,db.auth_user.first_name,db.auth_user.cnt):}}
+{{id1=rows.id}}
+{{fname=rows.first_name}}
+{{count=rows.cnt}}
+{{pass}}
+<tr>
+<h3> 
+<td>
+    &nbsp;&nbsp;&nbsp;<b><input type="checkbox" onclick="myFunction('{{=URL('update1', args=[id1,Book.Name,Book.Language,Book.id,fname,count,Book.Type])}}')">{{=Book.Name}}</input></b>
+</td>
+</h3> 
+<td>
+
+
+</td>
+</tr>
+{{pass}}
+{{flag = 'g'}}
+{{pass}}</p>
+{{pass}}
+{{pass}}
+{{pass}}</table>

@@ -1,0 +1,11 @@
+{{extend 'layout.html'}}
+{{id1=0}}
+{{for rows in db(db.Admin).select():}}
+{{id1 =id1 +1}}
+{{pass}}
+{{if id1 != 0 :}}
+<h2> You have successfully completed the allotment for the year </h2> {{=award.year}}
+{{pass}}
+{{if id1 == 0:}}
+
+{{pass}}

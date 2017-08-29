@@ -1,0 +1,235 @@
+timestamp: 2012-10-04T13:02:20.105665
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2012-10-04T13:02:20.334034
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-10-04T13:02:20.516152
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2012-10-04T13:02:20.758231
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2012-10-04T13:02:20.950200
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-10-04T13:02:21.216873
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2012-10-04T13:08:49.288168
+CREATE TABLE Book(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name CHAR(512),
+    Category CHAR(512)
+);
+success!
+timestamp: 2012-10-04T14:27:40.272705
+CREATE TABLE User(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Email CHAR(512),
+    Preference1 INTEGER REFERENCES Book(id) ON DELETE CASCADE,
+    Preference2 INTEGER REFERENCES Book(id) ON DELETE CASCADE,
+    Preference3 INTEGER REFERENCES Book(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2012-10-10T21:33:29.242264
+CREATE TABLE Student(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    RollNo CHAR(512),
+    Name CHAR(512),
+    Email CHAR(512),
+    Award CHAR(512),
+    Year CHAR(512)
+);
+success!
+timestamp: 2012-10-10T21:34:18.709456
+ALTER TABLE User ADD name CHAR(512);
+timestamp: 2012-10-10T21:34:18.865273
+ALTER TABLE User ADD rollno CHAR(512);
+timestamp: 2012-10-10T21:34:18.987725
+ALTER TABLE User ADD award CHAR(512);
+timestamp: 2012-10-10T21:34:19.110658
+ALTER TABLE User ADD year CHAR(512);
+timestamp: 2012-10-10T21:47:18.715127
+CREATE TABLE user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    RollNo CHAR(512),
+    Name CHAR(512),
+    Email CHAR(512),
+    Award CHAR(512),
+    Year CHAR(512)
+);
+timestamp: 2012-10-10T22:21:06.316242
+ALTER TABLE Book ADD language CHAR(512);
+timestamp: 2012-10-10T22:21:06.485153
+CREATE TABLE UPBook(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    stu_id CHAR(512),
+    Stu_name CHAR(512),
+    Name CHAR(512),
+    Language CHAR(512),
+    usd CHAR(512)
+);
+success!
+timestamp: 2012-10-11T17:37:13.870142
+CREATE TABLE Preference(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    preferences TEXT
+);
+success!
+timestamp: 2012-10-11T20:27:11.451572
+CREATE TABLE User1(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    RollNo CHAR(512),
+    Name CHAR(512),
+    Email CHAR(512),
+    Award CHAR(512),
+    Year CHAR(512)
+);
+success!
+timestamp: 2012-10-11T20:27:11.629362
+ALTER TABLE User ADD slno INTEGER;
+timestamp: 2012-10-11T20:40:33.899459
+CREATE TABLE stlist(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    SlNo INTEGER,
+    RollNo CHAR(512),
+    Name CHAR(512),
+    Email CHAR(512),
+    Award CHAR(512),
+    year CHAR(512)
+);
+success!
+timestamp: 2012-10-11T20:55:52.045790
+ALTER TABLE User ADD uptotal INTEGER;
+timestamp: 2012-10-11T20:55:52.234494
+ALTER TABLE User ADD total INTEGER;
+timestamp: 2012-10-11T21:20:34.527494
+ALTER TABLE Book ADD cost INTEGER;
+timestamp: 2012-10-11T22:00:39.854792
+ALTER TABLE Book ADD copies INTEGER;
+timestamp: 2012-10-11T22:26:07.322261
+ALTER TABLE User1 ADD uptotal INTEGER;
+timestamp: 2012-10-11T22:26:07.557016
+ALTER TABLE User1 ADD total INTEGER;
+timestamp: 2012-10-11T22:35:44.490731
+CREATE TABLE User2(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    SlNo INTEGER,
+    RollNo CHAR(512),
+    Name CHAR(512),
+    Email CHAR(512),
+    Award CHAR(512),
+    year CHAR(512),
+    Total INTEGER,
+    Uptotal INTEGER
+);
+success!
+timestamp: 2012-10-11T23:09:04.657630
+ALTER TABLE UPBook ADD bid CHAR(512);
+timestamp: 2012-10-11T23:09:04.818558
+ALTER TABLE UPBook ADD copies CHAR(512);
+timestamp: 2012-10-11T23:09:04.952014
+ALTER TABLE UPBook ADD cost CHAR(512);
+timestamp: 2012-10-12T10:46:06.324444
+CREATE TABLE prebook(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    stu_id CHAR(512),
+    Stu_name CHAR(512),
+    Name TEXT,
+    Language CHAR(512),
+    usd CHAR(512),
+    Bid INTEGER,
+    Copies CHAR(512),
+    Cost CHAR(512)
+);
+success!
+timestamp: 2012-10-12T16:35:37.790103
+ALTER TABLE User ADD award1 CHAR(512);
+timestamp: 2012-10-13T20:34:50.450468
+ALTER TABLE User ADD flag INTEGER;
+timestamp: 2012-10-13T22:21:41.766597
+ALTER TABLE auth_user ADD count INTEGER;
+timestamp: 2012-10-13T22:30:05.018191
+ALTER TABLE auth_user ADD cnt INTEGER;
+timestamp: 2012-10-16T15:59:32.457481
+CREATE TABLE Lpref(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    E CHAR(512),
+    Pri CHAR(512),
+    Sec CHAR(512)
+);
+success!
+timestamp: 2012-10-16T16:00:12.335835
+ALTER TABLE Lpref ADD primary CHAR(512);
+timestamp: 2012-10-16T16:00:35.650071
+ALTER TABLE Lpref ADD second CHAR(512);
+timestamp: 2012-10-16T16:00:35.827928
+ALTER TABLE Lpref ADD first CHAR(512);
+timestamp: 2012-10-16T17:23:27.343886
+CREATE TABLE lang(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name CHAR(512)
+);
+success!
+timestamp: 2012-11-04T15:00:15.400026
+CREATE TABLE Output(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Total INTEGER,
+    Passouts INTEGER,
+    Nonpassouts INTEGER
+);
+success!
+timestamp: 2012-11-04T15:56:08.947721
+CREATE TABLE Admin(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    year CHAR(512),
+    D1 INTEGER,
+    D2 INTEGER,
+    D3 INTEGER,
+    ML INTEGER
+);
+success!
+timestamp: 2012-11-12T12:16:33.836892
+ALTER TABLE Book ADD type INTEGER;
+timestamp: 2012-11-12T12:16:34.126203
+ALTER TABLE UPBook ADD type INTEGER;
+timestamp: 2012-11-12T12:16:34.362570
+ALTER TABLE prebook ADD type INTEGER;

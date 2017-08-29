@@ -1,0 +1,9 @@
+{{extend 'layout.html'}}<!--This page displays the list of students whose allotment is finalised by the admin , by clicking on the submit button-->
+<br/>
+<br/>
+<h3> List of Alloted Students : </h3>
+{{for user in users:}}
+{{if user.flag == 1:}}
+{{=LI(A(user.Name, _href=URL("show", args=user.id)))}}
+{{pass}}
+{{pass}}

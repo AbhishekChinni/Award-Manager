@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}<!--This page is displayed when the admin clicks on the allot link ,it displays the names of all the students without duplicates as links , on clicking on the link it is redirected to a page displaying the information about that student and the admin can proceed with the allotment process  -->
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STUDENTS</h2>
+<ul>
+<h3>
+{{i =0}}
+{{ for user in users :}}
+{{if user.flag == 1 :}}
+{{ i = i+1}}
+{{pass}}
+{{pass}}
+    <h3>Total number of students : {{=len(users)}}</h3>
+<h3>Number of students whose allotment is completed : {{=i}}</h3>
+
+{{for user in users:}}
+{{if user.flag == 0 : }}
+{{=LI(A(user.Name, _href=URL("show", args=user.id)))}}
+{{pass}}
+{{pass}}
+</h3>
+</ul>

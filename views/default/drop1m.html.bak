@@ -1,0 +1,7 @@
+{{extend 'layout.html'}}<!--This page warns whether the admins really wants to clear all the tables -->
+<br/>
+<br/>
+<h3>Note : This will delete the contents of all the tables excepy the book list<br/>
+    and you not be able to allot books for any student</h3><br/>
+<h3> If the allotment for this year is done,then click on REFRESH button</h3>
+<a href="{{=URL('drop1', args=[])}}"><button>REFRESH</button></a>

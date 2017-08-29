@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+<br/><br/><br/>
+<form enctype="multipart/form-data"
+      action="{{=URL('change', args=[books[0].id])}}" method="post">
+<table>
+<tr><td>Name :</td>      <td><input name="t1" type="text" value="{{=books[0].Name}}"/><br/></td> </tr>
+<tr><td>Cost  :</td>    <td><input name="t2" type="integer" value="{{=books[0].Cost}}"/><br/></td> </tr>
+<tr><td>Copies :</td>    <td><input name="t3" type="integer" value="{{=books[0].Copies}}"/><br/></td> </tr>
+<tr><td>Type :</td>    <td><input name="t4" type="integer" value="{{=books[0].Type}}"/><br/></td> </tr>
+<tr><td>Language :</td>  <td><input name="t5" type="text" value="{{=books[0].Language}}" /><br/></td> </tr>
+</table>
+<input type="submit" value="Update" />
+</form>
+<br/><br/>
+<a href="{{=URL('bookdel', args=[books[0].id])}}"><button>Delete</button></a>

@@ -1,0 +1,6 @@
+{{extend 'layout.html'}}
+<h3>Note : This button will delete the students list and you will have to upload it again</h3>
+<h3>Are you sure you want to change the amount money? </h3>
+<h3>If yes ,cilck on the following button</h3>
+
+<a href="{{=URL('drop', args=[])}}"><button>Yes</button></a>

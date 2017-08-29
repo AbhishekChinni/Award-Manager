@@ -1,0 +1,25 @@
+{{extend 'layout.html'}}
+<h2><center> LABELS </center></h2>
+<br/><br/>
+{{k =len(users)}}
+<table border="1">
+
+{{for i in range(k):}}
+{{if i != 0 :}}
+<tr>
+<td>
+{{=users[i].Name}}( {{=users[i].RollNo}} )</br>
+
+</td>
+<td>
+{{for j in range(len(books)):}}
+{{ if users[i].RollNo == books[j].usd:}}
+{{=books[j].Name}}</br>
+{{pass}}
+{{pass}}
+</td>
+{{pass}}
+</tr>
+{{pass}}
+{{pass}}
+</table>

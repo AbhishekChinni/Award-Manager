@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}<!-- This page is displayed if the admin wants to re-enter a list of students deleting the existing list --> 
+<h2>Instructions</h2>
+<h4>This page is for uploading the students list</h4>
+<h4>The CSV file should consist of the following columns in the specified order</h4>
+<ul>
+<li>SlNo</li>
+<li>RollNo</li>
+<li>Name</li>
+<li>Email</li>
+<li>Award</li>
+<li>Year</li>
+</ul>
+{{=FORM(INPUT(_type='file',_name='csvfile'),INPUT(_type='hidden',_value='User',_name='table'),INPUT(_type='submit',_value='Upload'))}}

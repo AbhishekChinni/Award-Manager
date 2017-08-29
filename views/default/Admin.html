@@ -1,0 +1,14 @@
+{{extend 'layout.html'}}<!--This page displays a form to fill in the the academic year,award money by the admin-->
+{{id1=0}}
+{{for rows in db(db.Admin).select():}}
+{{id1 =id1 +1}}
+{{pass}}
+
+<br/><br/><br/><br/>
+{{if id1 == 0:}}
+{{=form2}}
+{{pass}}
+{{if id1 != 0:}}
+<h3>You already entered an amount and year, would you like to change it </h3>
+<p align="left">&nbsp;&nbsp;&nbsp;<a href="{{=URL('drop', args=[])}}"><button>YES</button></a></p>
+{{pass}}

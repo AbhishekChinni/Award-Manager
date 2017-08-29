@@ -1,0 +1,3 @@
+{{extend 'layout.html'}}<!--This page is displayed as a form to students ,to fill their language preferences -->
+<h2>Please fill your language preferences for books</h2>
+{{=form1}}

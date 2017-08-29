@@ -1,0 +1,19 @@
+{{extend 'layout.html'}}<!--This page is displayed  when the allotment of a particular student is final, i.e that particular student's name disappears from the initial list -->
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STUDENTS</h2>
+<ul>
+<h3>
+{{i =0}}
+{{ for user in users :}}
+{{if user.flag == 1 :}}
+{{ i = i+1}}
+{{pass}}
+{{pass}}
+<h2>Number of students whose allotment is completed : {{=i}}</h2>
+<a href="{{=URL('alloted', args=[])}}"><button>Alloted_Students</button></a>
+{{for user in users:}}
+{{if user.flag == 0 : }}
+{{=LI(A(user.Name, _href=URL("show", args=user.id)))}}
+{{pass}}
+{{pass}}
+</h3>
+</ul>

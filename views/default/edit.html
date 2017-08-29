@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+<br/>
+<br/>
+<h2>Core Books</h2>
+{{for user in users:}}
+{{if user.Type == 0:}}
+{{=LI(A(user.Name, _href=URL("nedit", args=user.id)))}}
+{{pass}}
+{{pass}}
+<br/>
+<h2>Other Books</h2>
+{{for user in users:}}
+{{if user.Type == 1:}}
+{{=LI(A(user.Name, _href=URL("nedit", args=user.id)))}}
+{{pass}}
+{{pass}}

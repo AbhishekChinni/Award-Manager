@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}<!-- This page is displayed if the admin wants to re-enter a list of books deleting the existing list --> 
+{{extend 'layout.html'}}
+<h2>Instructions</h2>
+<h4>This page is for uploading the Books list</h4>
+<h4>The CSV file should consist of the following columns in the specified order</h4>
+<ul>
+<li>Name</li>
+<li>Language</li>
+<li>Cost</li>
+<li>Copies</li>
+</ul>
+{{=FORM(INPUT(_type='file',_name='csvfile'),INPUT(_type='hidden',_value='Book',_name='table'),INPUT(_type='submit',_value='Upload'))}}

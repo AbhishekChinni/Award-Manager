@@ -1,0 +1,63 @@
+{{extend 'layout.html'}}<!--This page displays the output -->
+
+{{k = 0}}
+{{for i in users:}}
+{{k = k + i.Total}}
+{{pass}}
+<h3> The total cost to be spent on books = {{=k}}</h3>
+{{bp = 0}}
+{{bn = 0}}
+{{mp = 0}}
+{{mn = 0}}
+{{lp = 0}}
+{{ln = 0}}
+{{sp = 0}}
+{{sn = 0}}
+{{x = int(award.year[0:4]) - 3 }}
+{{y = int(award.year[0:4]) - 1 }}
+{{x = str(x)}}
+{{y = str(y)}}
+{{for i in users:}}
+{{a = i.RollNo[0:4]}}
+{{c = i.RollNo[4:6]}}
+{{if a == x:}}
+{{if c == '01' or c == '02' or c == '25' or c == '30' or c == '31' or c == '56'or c == '64' or c == '80':}}
+{{bp = bp + 1}}
+{{pass}}
+{{if c == '03' or c == '34':}} 
+{{lp = lp + 1}}
+{{pass}}
+{{pass}}
+{{if a != x:}}
+{{if c == '01' or c == '02' or c == '25' or c == '30' or c == '31' or c == '56'or c == '64' or c == '80':}}
+{{bn = bn + 1}}
+{{pass}}
+{{if c == '03' or c == '34':}} 
+{{ln = ln + 1}}
+{{pass}}
+{{pass}}
+{{if a == y: }}
+{{if c == '05' or c == '06' or c == '10' or c == '11' or c == '21' or c == '41' or c == '60' or c == '63':}}
+{{mp = mp + 1}}
+{{pass}}
+{{if c == '63':}}
+{{sp = sp +1}}
+{{pass}}
+{{pass}}
+{{if a != y:}}
+{{if c == '05' or c == '06' or c == '10' or c == '11' or c == '21' or c == '41' or c == '60' or c == '63':}}
+{{mn = mn + 1}}
+{{pass}}
+{{if c == '63':}}
+{{sn = sn +1}}
+{{pass}}
+{{pass}}
+{{pass}}
+<h3>Number of Passout Students (B Tech) = {{=bp}}</h3>
+<h3>Number of Non-Passout Students (B Tech) = {{=bn}}</h3>
+<h3>Number of Passout Students (M Tech) = {{=mp}}</h3>
+<h3>Number of Non-Passout Students (M Tech) = {{=mn}}</h3>
+<!--<h3>Number of Passout Students (Lateral Entry) = {{=lp}}</h3>
+<h3>Number of Non-Passout Students (Lateral Entry) = {{=ln}}</h3>
+<h3>Number of Passout Students (Post Bsc) = {{=sp}}</h3>
+<h3>Number of Non-Passout Students (Post Bsc) = {{=sn}}</h3>-->
